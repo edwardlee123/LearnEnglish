@@ -91,7 +91,7 @@ function setCenterListData(){
             $(".centerData").html(centerData);
             document.getElementById("currentpage").value = json.currentpage;
             document.getElementById("totalpage").value = json.totalpage;
-            $(".centerDataCount").html("1");
+            $(".centerDataCount").html(json.currentpage);
             $(".centerDataTotal").html($("#totalpage").val());
             var dataStatue = json.statue;
             if(dataStatue=="true"){//表示已经添加到单词表  
@@ -137,7 +137,7 @@ function topage(page) {
             $(".centerData").html(centerData);
             document.getElementById("currentpage").value = json.currentpage;
             document.getElementById("totalpage").value = json.totalpage;
-            $(".centerDataCount").html("1");
+            $(".centerDataCount").html(json.currentpage);
             $(".centerDataTotal").html($("#totalpage").val());
             var dataStatue = json.statue;
             if(dataStatue=="true"){//表示已经添加到单词表  

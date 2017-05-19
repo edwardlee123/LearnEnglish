@@ -76,7 +76,7 @@ function delOrg(id){
             }else{
             	alert("delete fail");
             }
-            window.location.href="article_list.html";
+            window.location.href="article_list.jsp";
         }
     })
 }

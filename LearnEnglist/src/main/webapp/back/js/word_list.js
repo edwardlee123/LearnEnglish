@@ -26,7 +26,9 @@ function setCenterListData(){
             for (var i = 0; i < data.length; i++) {
             	centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td><a href='javascript:;' onclick='his(\"" + data[i].id + "\")'>详细</a></td>";
             	if(json.adminRole==2||json.adminRole==1){
-            		centerData += "<td> <a href='javascript:void(0);' onclick='delOrg(" + data[i].id + ")'>删除</a></td>";
+            		centerData += "<td> <a href='javascript:void(0);' onclick='delOrg(" + data[i].id + ")'>删除</a>" +
+            				"<a href='updateWordPre.do?wordId="+data[i].id+"'>修改</a>" +
+            				"</td>";
             	}
                 centerData += "</tr>";
             }
@@ -59,7 +61,9 @@ function topage(page) {
             for (var i = 0; i < data.length; i++) {
             	centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td><a href='javascript:;' onclick='his(\"" + data[i].id + "\")'>详细</a></td>";
             	if(json.adminRole==2||json.adminRole==1){
-            		centerData += "<td> <a href='javascript:void(0);' onclick='delOrg(" + data[i].id + ")'>删除</a></td>";
+            		centerData += "<td> <a href='javascript:void(0);' onclick='delOrg(" + data[i].id + ")'>删除</a>" +
+            				"<a href='updateWordPre.do?wordId="+data[i].id+"'>修改</a>" +
+            				"</td>";
             	}
                 centerData += "</tr>";
             }
@@ -91,7 +95,7 @@ function delOrg(id){
             	alert("delete fail");
     			/*window.location.href="actroControll.jsp";*/
             }
-            window.location.href="word_list.html";
+            window.location.href="word_list.jsp";
         }
     })
 }

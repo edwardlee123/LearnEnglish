@@ -19,13 +19,21 @@ function setCenterListData(){
             //console.log(JSON.stringify(data))
             var centerData = "<tr id='alldata_id'><th scope='col'>序号</th><th scope='col'>单词</th><th scope='col'>释义</th><th scope='col'>学习时长</th><th scope='col'>添加日期</th><th scope='col'>状态</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td>" + data[i].time + "s</td><td>"+data[i].addDate+"</td><td>" + (data[i].flag?"正确":"错误") + "</td>";
+            	var status = "未测试";
+            	if(data[i].inputCurrent!=null){
+            		if(data[i].flag){
+            			status = "正确";
+            		}else{
+            			status="错误";
+            		}
+            	}
+            	centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td>" + (data[i].time/1000) + "s</td><td>"+data[i].addDate+"</td><td>" + status+ "</td>";
             }
             var testRightRate = 0;
             if(json.testCount!=0){
             	testRightRate = json.rightCount/json.testCount;
             }
-            centerData += "<tr><td>记忆单词总数</td><td>" + json.memoryCount + "</td><td>总用时(单词本+不在单词本)s</td><td>"+json.memorySumTime+"s</td><td>测试正确率</td><td>" + testRightRate + "</td><tr>";
+            centerData += "<tr><td>记忆单词总数</td><td>" + json.memoryCount + "</td><td>总用时(单词本+不在单词本)s</td><td>"+(json.memorySumTime/1000)+"s</td><td>测试正确率</td><td>" + testRightRate + "</td><tr>";
             $(".centerData").html(centerData);
             document.getElementById("currentpage").value = json.currentpage;
             document.getElementById("totalpage").value = json.totalpage;
@@ -49,13 +57,21 @@ function topage(page) {
             var data = json.info2;
             var centerData = "<tr id='alldata_id'><th scope='col'>序号</th><th scope='col'>单词</th><th scope='col'>释义</th><th scope='col'>学习时长</th><th scope='col'>添加日期</th><th scope='col'>状态</th></tr>";
             for (var i = 0; i < data.length; i++) {
-                centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td>" + data[i].time + "s</td><td>"+data[i].addDate+"</td><td>" + (data[i].flag?"正确":"错误") + "</td>";
+            	var status = "未测试";
+            	if(data[i].inputCurrent!=null){
+            		if(data[i].flag){
+            			status = "正确";
+            		}else{
+            			status="错误";
+            		}
+            	}
+                centerData += "<tr id='org-item-" + data[i].id + "'><td>" + (i + 1) + "</td><td>" + data[i].name + "</td><td>" + data[i].meaning + "</td><td>" +( data[i].time/1000) + "s</td><td>"+data[i].addDate+"</td><td>" + status + "</td>";
             }
             var testRightRate = 0;
             if(json.testCount!=0){
             	testRightRate = json.rightCount/json.testCount;
             }
-            centerData += "<tr><td>记忆单词总数</td><td>" + json.memoryCount + "</td><td>总用时s</td><td>"+json.memorySumTime+"s</td><td>测试正确率</td><td>" + testRightRate + "</td><tr>";
+            centerData += "<tr><td>记忆单词总数</td><td>" + json.memoryCount + "</td><td>总用时s</td><td>"+(json.memorySumTime/1000)+"s</td><td>测试正确率</td><td>" + testRightRate + "</td><tr>";
             $(".centerData").html(centerData);
             document.getElementById("currentpage").value = json.currentpage;
             document.getElementById("totalpage").value = json.totalpage;

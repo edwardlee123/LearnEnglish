@@ -120,4 +120,33 @@ public class WordController {
 		result.put("totalpage", "success");
 		response.getWriter().write(result.toString());
 	}
+	@RequestMapping(value="back/updateWordPre.do")
+	public String updateWordPre(HttpServletRequest request, HttpServletResponse response,int wordId) throws IOException  {
+		Word word = wordService.getWordById(wordId);
+		request.setAttribute("word",word);
+		return "back/update_word";
+	}
+	@RequestMapping(value="back/updateWord.do",method={RequestMethod.POST,RequestMethod.GET})
+	public String updateWord(HttpServletRequest request, HttpServletResponse response,int wordId,@RequestParam("pronunciation") MultipartFile pronunciation,@RequestParam("name")String name,@RequestParam("soundmark")String soundmark,@RequestParam("meaning")String meaning) {
+		String filePath = request.getSession().getServletContext().getRealPath("/") + "upload"+File.separator+pronunciation.getOriginalFilename();
+		System.out.println();
+		try {
+			pronunciation.transferTo(new File(filePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Word word = wordService.getWordById(wordId);
+		word.setName(name);
+		word.setMeaning(meaning);
+		word.setPronunciation(filePath);
+		word.setSoundmark(soundmark);
+	/*	String[] wordTypes = request.getParameterValues("wordType");
+		Set<WordType> wordTypeSet = new HashSet<WordType>();
+		for(String wordType:wordTypes){
+			wordTypeSet.add(wordTypeService.getWordTypeById(Integer.parseInt(wordType)));
+		}
+		word.setWordTypes(wordTypeSet);*/
+		wordService.addWord(word);
+		return "back/word_list";
+	}
 }

@@ -112,7 +112,7 @@ public class StudentController {
 		List<Word> words = null;
 		JSONArray arr = new JSONArray();
 		if (student != null) {
-			words = wordService.getWordByKeyWordPage(student.getId(), page,
+			words = wordService.getWordByKeyWordTestPage(student.getId(), page,
 					pageSize);
 			if (words != null) {
 				for (Word w : words) {
@@ -126,21 +126,26 @@ public class StudentController {
 							+ filePaths[filePaths.length - 1]);
 					tmp.put("pronunciation", w.getPronunciation());
 					tmp.put("soundmark", w.getSoundmark());
-					tmp.put("time", w.getStudentWords().iterator().next()
-							.getMemoryTime() / 1000);
-					tmp.put("flag", w.getStudentWords().iterator().next()
-							.isFlag());
-					tmp.put("addDate", w.getStudentWords().iterator().next()
-							.getAddDate());
+					Iterator<StudentWord> iter = w.getStudentWords().iterator();
+					StudentWord sw = null;
+					while(iter.hasNext()){
+						sw = iter.next();
+						if(sw.getStudent().getId()==student.getId()){
+							break;
+						}
+					}
+					tmp.put("time",sw.getMemoryTime());
+					tmp.put("flag", sw.isFlag());
+					tmp.put("addDate", sw.getAddDate()==null?"未添加到单词本": sw.getAddDate());
+					tmp.put("inputCurrent", sw.getInputContent());
 					System.out.println("cjttime="
 							+ w.getStudentWords().iterator().next()
 									.getMemoryTime());
 					;
-					tmp.put("student_word_id", w.getStudentWords().iterator()
-							.next().getId());
+					tmp.put("student_word_id", sw.getId());
 					// 当前该人的该单词的id
 					System.out.println("student_word_id="
-							+ w.getStudentWords().iterator().next().getId());
+							+ sw.getId());
 					;
 					arr.add(tmp);
 				}
@@ -148,7 +153,7 @@ public class StudentController {
 			double d = pageSize;
 			result.put(
 					"totalpage",
-					Math.ceil(wordService.getWordByStudentIdCount(student
+					Math.ceil(wordService.getWordTestByStudentIdCount(student
 							.getId()) / d));
 		} 
 		//总用时

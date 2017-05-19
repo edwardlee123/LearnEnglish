@@ -46,12 +46,12 @@ public class AdminController {
 		JSONObject result = new JSONObject();
 		Admin admin = adminDao.getAdminByEmail(email, password);//studentService.getStudentByEmail(email,password);
 		if(admin!=null){
+			request.getSession().setAttribute("currentAdmin", admin);
+			request.getSession().setAttribute("currentAdminRole", adminDao.getAdminRoleId(admin.getId()));
 			result.put("statue", "success");
 		}else{
 			result.put("statue", "fail");
 		}
-		request.getSession().setAttribute("currentAdmin", admin);
-		request.getSession().setAttribute("currentAdminRole", adminDao.getAdminRoleId(admin.getId()));
 		response.getWriter().write(result.toString());
 	}
 	
