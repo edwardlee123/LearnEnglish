@@ -216,7 +216,26 @@ public class StudentController {
 						+ filePaths[filePaths.length - 1]);
 				tmp.put("pronunciation", w.getPronunciation());
 				tmp.put("soundmark", w.getSoundmark());
-				tmp.put("time", w.getStudentWords().iterator().next()
+				
+				tmp.put("soundmark", w.getSoundmark());
+				Iterator<StudentWord> iter = w.getStudentWords().iterator();
+				StudentWord sw = null;
+				while(iter.hasNext()){
+					sw = iter.next();
+					if(sw.getStudent().getId()==student.getId()){
+						break;
+					}
+				}
+				tmp.put("time",sw.getMemoryTime());
+				tmp.put("flag", sw.isFlag());
+				tmp.put("addDate", sw.getAddDate()==null?"未添加到单词本": sw.getAddDate());
+				tmp.put("inputCurrent", sw.getInputContent());
+				System.out.println("cjttime="
+						+ w.getStudentWords().iterator().next()
+								.getMemoryTime());
+				;
+				tmp.put("student_word_id", sw.getId());
+				/*tmp.put("time", w.getStudentWords().iterator().next()
 						.getMemoryTime() / 1000);
 				tmp.put("flag", w.getStudentWords().iterator().next()
 						.isFlag());
@@ -230,8 +249,7 @@ public class StudentController {
 						.next().getId());
 				// 当前该人的该单词的id
 				System.out.println("student_word_id="
-						+ w.getStudentWords().iterator().next().getId());
-				;
+						+ w.getStudentWords().iterator().next().getId());*/
 				arr.add(tmp);
 			}
 		}
@@ -294,7 +312,25 @@ public class StudentController {
 							+ filePaths[filePaths.length - 1]);
 					tmp.put("pronunciation", w.getPronunciation());
 					tmp.put("soundmark", w.getSoundmark());
-					tmp.put("time", w.getStudentWords().iterator().next()
+					tmp.put("soundmark", w.getSoundmark());
+					Iterator<StudentWord> iter = w.getStudentWords().iterator();
+					StudentWord sw = null;
+					while(iter.hasNext()){
+						sw = iter.next();
+						if(sw.getStudent().getId()==student.getId()){
+							break;
+						}
+					}
+					tmp.put("time",sw.getMemoryTime());
+					tmp.put("flag", sw.isFlag());
+					tmp.put("addDate", sw.getAddDate()==null?"未添加到单词本": sw.getAddDate());
+					tmp.put("inputCurrent", sw.getInputContent());
+					System.out.println("cjttime="
+							+ w.getStudentWords().iterator().next()
+									.getMemoryTime());
+					;
+					tmp.put("student_word_id", sw.getId());
+					/*tmp.put("time", w.getStudentWords().iterator().next()
 							.getMemoryTime() / 1000);
 					tmp.put("flag", w.getStudentWords().iterator().next()
 							.isFlag());
@@ -309,7 +345,7 @@ public class StudentController {
 					// 当前该人的该单词的id
 					System.out.println("student_word_id="
 							+ w.getStudentWords().iterator().next().getId());
-					;
+					;*/
 					// tmp.put("student_word_id", w.getStudentWords().);
 					arr.add(tmp);
 				}
@@ -354,7 +390,26 @@ public class StudentController {
 							+ filePaths[filePaths.length - 1]);
 					tmp.put("pronunciation", w.getPronunciation());
 					tmp.put("soundmark", w.getSoundmark());
-					tmp.put("time", w.getStudentWords().iterator().next()
+					tmp.put("soundmark", w.getSoundmark());
+					Iterator<StudentWord> iter = w.getStudentWords().iterator();
+					StudentWord sw = null;
+					while(iter.hasNext()){
+						sw = iter.next();
+						if(sw.getStudent().getId()==student.getId()){
+							break;
+						}
+					}
+					tmp.put("time",sw.getMemoryTime());
+					tmp.put("flag", sw.isFlag());
+					tmp.put("addDate", sw.getAddDate()==null?"未添加到单词本": sw.getAddDate());
+					tmp.put("inputCurrent", sw.getInputContent());
+					System.out.println("cjttime="
+							+ w.getStudentWords().iterator().next()
+									.getMemoryTime());
+					;
+					tmp.put("student_word_id", sw.getId());
+					
+					/*tmp.put("time", w.getStudentWords().iterator().next()
 							.getMemoryTime() / 1000);
 					tmp.put("flag", w.getStudentWords().iterator().next()
 							.isFlag());
@@ -369,7 +424,7 @@ public class StudentController {
 					// 当前该人的该单词的id
 					System.out.println("student_word_id="
 							+ w.getStudentWords().iterator().next().getId());
-					;
+					;*/
 					// tmp.put("student_word_id", w.getStudentWords().);
 					arr.add(tmp);
 				}

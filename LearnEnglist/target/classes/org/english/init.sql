@@ -58,6 +58,6 @@ INSERT INTO `word_wordtype` VALUES ('20', '3');
 INSERT INTO `word_wordtype` VALUES ('21', '3');
 
 
-INSERT INTO `admins` VALUES ('1', 'chejt', 'cjt@ht.com', '123');
-INSERT INTO `admins` VALUES ('2', 'qiujw', 'qjw@ht.com', '123');
+INSERT INTO `admins` VALUES ('1', 'cjt@ht.com','chejt',  '123');
+INSERT INTO `admins` VALUES ('2',  'qjw@ht.com','qiujw', '123');
 
